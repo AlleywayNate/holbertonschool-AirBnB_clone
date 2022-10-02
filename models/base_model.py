@@ -13,18 +13,27 @@ class BaseModel:
         Initialize an instance of BaseModel
         """
         if kwargs:
-            for key, value in kwargs.items():
-                if key == "created_at" or key == "updated_at":
-                    dttime_ob = datetime.strptime(value,
-                                                  '%Y-%m-%dT%H:%M:%S.%f')
-                    setattr(self, key, dttime_ob)
-                elif key != "__class__":
+            attr = kwargs
+            if 'id' not in attr:
+                attr['id'] = str(uuid4())
+            if 'created_at' not in attr:
+                attr['created_at'] = datetime.now()
+            elif not isinstance(attr['created_at'], datetime):
+                attr['created_at'] = datetime.strptime(
+                    attr['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
+            if 'updated_at' not in attr:
+                attr['updated_at'] = datetime.now()
+            elif not isinstance(attr['updated_at'], datetime):
+                attr['updated_at'] = datetime.strptime(
+                    attr['updated_at'], '%Y-%m-%dT%H:%M:%S.%f')
+            attr.pop('__class__', None)
+            for key, value in attr.items():
                     setattr(self, key, value)
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            models.storage.new(self)
+            # models.storage.new(self)
 
     def __str__(self):
         """
@@ -38,7 +47,7 @@ class BaseModel:
         datetime
         """
         self.updated_at = datetime.now()
-        models.storage.save()
+        # models.storage.save()
 
     def to_dict(self):
         """
