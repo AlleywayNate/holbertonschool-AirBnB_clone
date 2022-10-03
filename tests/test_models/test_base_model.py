@@ -36,12 +36,11 @@ class TestBaseModel(unittest.TestCase):
         """ Single instantiate and check attributes """
         base1 = BaseModel()
         self.assertEqual(type(base1.id), str)
-    
+
     def test_instantiate_created(self):
         """ Single instantiate and check attributes """
         base1 = BaseModel()
         self.assertEqual(type(base1.created_at), datetime)
-
 
     def test_instantiate_updated(self):
         """ Single instantiate and check attributes """
