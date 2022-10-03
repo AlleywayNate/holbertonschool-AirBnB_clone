@@ -15,10 +15,15 @@ and deserializes JSON file to instances
 
 class FileStorage:
     """
-    Serializes instances to a JSON file and deserializes JSON file to instances
+    Serializes instances to a JSON file and deserializes back from JSON
     Attributes:
-    __file_path: string - path to the JSON file (ex: file.json)
-    __objects: dictionary - empty but will store all objects by <class name>.id
+        __file_path: string - path to the JSON file (ex: file.json)
+        __objects: dictionary - will store all objects by <class name>.id
+    Methods:
+        all(): returns the dictionary __objects
+        new(): sets in __objects the obj with key <obj class name>.id
+        save(): serializes __objects to the JSON file
+        reload(): deserializes the JSON file to __objects
     """
     __file_path = 'file.json'
     __objects = {}
