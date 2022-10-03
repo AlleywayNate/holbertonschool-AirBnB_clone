@@ -32,11 +32,19 @@ class TestBaseModel(unittest.TestCase):
         base2 = BaseModel()
         self.assertNotEqual(base1.id, base2.id)
 
-    def test_instantiate_attrs(self):
+    def test_instantiate_id(self):
         """ Single instantiate and check attributes """
         base1 = BaseModel()
         self.assertEqual(type(base1.id), str)
+
+    def test_instantiate_created(self):
+        """ Single instantiate and check attributes """
+        base1 = BaseModel()
         self.assertEqual(type(base1.created_at), datetime)
+
+    def test_instantiate_updated(self):
+        """ Single instantiate and check attributes """
+        base1 = BaseModel()
         self.assertEqual(type(base1.updated_at), datetime)
 
     def test_instantiate_kwargs(self):

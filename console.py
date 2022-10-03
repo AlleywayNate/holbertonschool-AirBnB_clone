@@ -171,6 +171,14 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
 
+        if len(args) < 3:
+            print("** attribute name missing **")
+            return
+
+        if len(args) < 4:
+            print("** value missing **")
+            return
+
         obj_key = args[0] + "." + args[1]
         storage = FileStorage()
         all_objs = storage.all()
@@ -182,14 +190,6 @@ class HBNBCommand(cmd.Cmd):
 
         if not instance_found:
             print("** no instance found **")
-            return
-
-        if len(args) < 3:
-            print("** attribute name missing **")
-            return
-
-        if len(args) < 4:
-            print("** value missing **")
             return
 
         if args[2] in HBNBCommand.int_attrs:
