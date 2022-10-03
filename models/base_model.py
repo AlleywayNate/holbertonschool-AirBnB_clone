@@ -2,12 +2,25 @@
 from uuid import uuid4
 from datetime import datetime
 import models
-# from models import storage
+"""
+Module BaseModel class:
+    defines all common attributes/methods for other classes.
+"""
 
 
 class BaseModel:
     """
-    Base class
+    Base class -
+    Attributes:
+        id: string - assign with an uuid when an instance is created.
+        created_at: datetime - assigned with the current datetime
+                    when an instance is created.
+        updated_at: datetime - assigned with the current datetime
+                    when an instance is created and it will be updated
+                    every time you change your object
+    Methods:
+        save(): updates the attribute updated_at with the current datetime
+        to_dict(): returns a dictionary containing all keys/values of __dict__
     """
     def __init__(self, *args, **kwargs):
         """
