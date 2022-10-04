@@ -26,7 +26,7 @@ class HBNBCommand(cmd.Cmd):
     float_attrs = ["latitude", "longitude"]
 
     def do_EOF(self, line):
-        """Quits the console when Ctrl D entered
+        """Quits the console when Ctrl+D entered
         """
         print()
         return True
@@ -227,34 +227,39 @@ class HBNBCommand(cmd.Cmd):
 
         print(count)
 
-    def precmd(self, line):
-        """
-        overrides parent precmd method to handle alt syntax
-        """
-        if not line:
-            return line
+    # def precmd(self, line):
+    #     """
+    #     overrides parent precmd method to handle alt syntax
+    #     """
+    #     if not line:
+    #         return line
 
-        args = line.split()
+    #     args = line.split()
 
-        if args[0] in ['EOF', 'quit', 'create', 'all', 'show',
-                       'destroy', 'help', 'update', 'count']:
-            return line
+    #     # if not args:
+    #     #     pass
 
-        args = args[0].split(".")
-        class_name = args[0]
+    #     if args[0] in ['EOF', 'quit', 'create', 'all', 'show',
+    #                    'destroy', 'help', 'update', 'count']:
+    #         return line
+    #     # else:
+    #     #     pass
 
-        if class_name not in HBNBCommand.classes_list:
-            return line
+    #     args = args[0].split(".")
+    #     class_name = args[0]
 
-        if len(args) > 1:
-            args = args[1].split('(')
-            command = args[0]
-            obj_id = args[1].split('"')
-            new_line = command + " " + class_name + " "
-            if len(obj_id) > 1:
-                new_line += obj_id[1]
+    #     if class_name not in HBNBCommand.classes_list:
+    #         return line
 
-        return new_line
+    #     if len(args) > 1:
+    #         args = args[1].split('(')
+    #         command = args[0]
+    #         obj_id = args[1].split('"')
+    #         new_line = command + " " + class_name + " "
+    #         if len(obj_id) > 1:
+    #             new_line += obj_id[1]
+
+    #     return new_line
 
 
 if __name__ == '__main__':
