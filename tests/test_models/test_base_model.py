@@ -72,9 +72,9 @@ class TestBaseModel(unittest.TestCase):
         """ save method """
         base1 = BaseModel()
         sleep(2)
-        update = base1.updated_at
         base1.save()
-        self.assertNotEqual(update, base1.updated_at)
+        update = base1.updated_at
+        self.assertEqual(type(update), type(datetime.now()))
 
     def test_to_dict(self):
         """ Happy pass to_dict method """
